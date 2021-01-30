@@ -272,10 +272,10 @@ class _HomePageState extends State<HomePage> {
         IconButton(
             icon: Icon(Icons.delete),
             onPressed: () {
-              for (int index in isDeletedIndex) {
-                folderFileModelList.removeAt(index);
-              }
+              folderFileModelList
+                  .removeWhere((element) => element.isSelected == true);
               isDeletedIndex.clear();
+
               setState(() {});
             })
       ];
@@ -322,8 +322,10 @@ class _HomePageState extends State<HomePage> {
 
   void onLongPressOnGirdViewAndListView({int index}) {
     if (isDeletedIndex.contains(index)) {
+      folderFileModelList[index].isSelected = false;
       isDeletedIndex.remove(index);
     } else {
+      folderFileModelList[index].isSelected = true;
       isDeletedIndex.add(index);
     }
 
@@ -333,8 +335,10 @@ class _HomePageState extends State<HomePage> {
   void onTapOnGridViewAndListView({int index}) {
     if (isDeletedIndex.isNotEmpty) {
       if (isDeletedIndex.contains(index)) {
+        folderFileModelList[index].isSelected = false;
         isDeletedIndex.remove(index);
       } else {
+        folderFileModelList[index].isSelected = true;
         isDeletedIndex.add(index);
       }
 

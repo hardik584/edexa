@@ -3,12 +3,18 @@ class FolderFileModel {
   DateTime dateTime;
   bool isFolder;
   List<FolderFileModel> childList;
-  FolderFileModel({
-    this.name,
-    this.dateTime,
-    this.isFolder = false,
-    this.childList,
-  });
+  bool isSelected;
+  FolderFileModel(
+      {this.name,
+      this.dateTime,
+      this.isFolder = false,
+      this.childList,
+      this.isSelected = false});
+
+  @override
+  String toString() {
+    return name.toString();
+  }
 }
 
 List<FolderFileModel> initList = [
